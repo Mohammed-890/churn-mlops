@@ -2,7 +2,7 @@
 
 A working customer churn demo, a tested Python API, reproducible training, Docker packaging, GitHub Actions workflows and Terraform infrastructure. Inspired by the public ECS project direction at CoderCo; independently implemented, not a copy of its paid course.
 
-**Start here:** this is a locally tested portfolio implementation. AWS resources have not been created, and the GitHub workflows have not run on a GitHub repository yet. The detailed verification report distinguishes tested components from prepared deployment code.
+**Start here:** this portfolio implementation has passed local Python tests and the [GitHub Test and build workflow](https://github.com/Mohammed-890/churn-mlops/actions/runs/37617722779), including training, all 12 tests, Terraform validation, Docker build and container readiness/prediction checks. AWS resources have not been created, and the manual AWS deployment workflow has not been run. See [the verification report](docs/VERIFICATION.md) for evidence and remaining limits.
 
 ## Run it on your Mac
 

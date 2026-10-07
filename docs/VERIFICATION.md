@@ -13,11 +13,23 @@
 - Both GitHub workflow YAML files parsed successfully. This checks syntax, not actual GitHub execution.
 - Terraform 1.9.8 formatting check passed; provider initialization downloaded the signed AWS 5.100.0 release and generated the included official dependency lock file.
 
+## Passed in GitHub Actions
+
+[Run 37617722779](https://github.com/Mohammed-890/churn-mlops/actions/runs/37617722779) passed on commit `94cc5580d1e7f39ba8d93b8fb11f95b76d94a23b` on 2026-10-07:
+
+- Installed the pinned development requirements on Python 3.12 / Ubuntu.
+- Verified the dataset checksum and retrained the model; the reported metrics matched the local results.
+- All 12 tests passed with the known deprecation warning.
+- Terraform 1.9.8 formatting, provider initialization and configuration validation passed.
+- Built the Docker image, started the container, and received successful readiness and prediction responses.
+- Example churn probability: `0.7391927294054842`; CI model version: `lr-v1-9ee484f3e882`. Artifact identifiers can differ across platforms even when metrics and predictions agree.
+
+Terraform initialization and validation also passed on the Mac during this continuation. The official signed AWS 5.100.0 package was verified and its Mac checksum added to the lock file; no checksum validation was bypassed. This resolves the earlier environment-specific validation limitation.
+
 ## Outstanding / not executed
 
-- Full terraform validate could not complete. The provider plugin failed to start because this execution environment disallows its Unix socket: `listen unix ... socket: operation not permitted`. No checksum verification was disabled. Run CI or local terraform init/validate before any cloud apply.
-- Docker build/run was not executed here because no Docker executable/daemon was available. The CI and deploy workflows include build and HTTP smoke checks.
-- GitHub CI and OIDC deployment have not been run in a repository.
+- Docker was tested on GitHub's Ubuntu runner, not on this Mac, where Docker is not installed.
+- The manual AWS/OIDC deployment workflow has not been run.
 - No AWS plan against an authenticated account, resource creation, load balancer routing, IAM permission exercise, alarm notification or cloud rollback test has been performed.
 - No live accuracy, drift, throughput, availability or business retention results have been measured.
 
@@ -27,7 +39,7 @@ The tested FastAPI/Starlette TestClient emits a deprecation warning about its ht
 
 ## Next validation sequence
 
-Run on your Mac; then run GitHub CI (including Terraform validation and Docker tests). Review AWS account/region/costs, deploy the bootstrap image and infrastructure, test public routing and logs, and only then exercise OIDC delivery and rollback. Update this report with actual observations.
+Local Python checks and GitHub CI are complete. A future AWS stage requires separate approval and a chosen account, region and budget. Only after that stage should public routing, logs, OIDC delivery and rollback be described as tested. No cloud deployment was authorized or performed during this setup.
 
 ## Setup continuation — 2026-10-07
 
@@ -36,4 +48,4 @@ Run on your Mac; then run GitHub CI (including Terraform validation and Docker t
 - Retraining wrote to a separate temporary directory; the committed model and the user's existing Python 3.14 environment were preserved.
 - Expanded Git and Docker exclusions for local environments, caches, environment files, common credential/key files, Terraform state/plans/variable values and macOS metadata.
 - Inspected all 38 tracked files for common AWS/GitHub token and private-key patterns; no matches were found. This is a targeted check, not a guarantee that every possible secret format is detectable.
-- GitHub upload and CI results remain pending authentication.
+- Authenticated as Mohammed-890 and uploaded the existing history. GitHub CI passed on its first run; no CI implementation fixes were required.

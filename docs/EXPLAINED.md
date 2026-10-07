@@ -6,7 +6,7 @@
 
 Churn means a customer stops using a service. A company might use a churn score to prioritise customers for a conversation. This project estimates a sample dataset's churn label; it does not send offers or make decisions about real people.
 
-A useful way to explain the scope is: “I have a working local system and prepared cloud deployment infrastructure. I will describe a live AWS deployment only after I deploy and verify it.”
+A useful way to explain the scope is: “I have a working local system, passing GitHub CI including Docker checks, and validated cloud infrastructure configuration. I will describe a live AWS deployment only after I deploy and verify it.”
 
 ## 2. What the user sees
 
@@ -195,7 +195,7 @@ The separate task-rendering test checks that a describe-task response is cleaned
 
 **What would you improve next?** “Validation-based model comparison and threshold selection, probability calibration, dependency hash locking, HTTPS/authentication, and a real AWS deployment and rollback exercise.”
 
-**Did you deploy this to AWS?** Before deployment: “I prepared and formatted the Terraform configuration. Full provider validation was blocked by this environment, and AWS runtime behaviour remains to be tested.” After deployment: describe only actual resources, logs, test requests and rollback evidence you observed.
+**Did you deploy this to AWS?** Before deployment: “I prepared and validated the Terraform configuration, and GitHub CI passed the Docker build and API smoke tests. I have not deployed to AWS; its runtime behaviour remains to be tested.” After deployment: describe only actual resources, logs, test requests and rollback evidence you observed.
 
 **Did you build it unaided?** “I used AI assistance for implementation and explanations, then reviewed and ran the project. I can explain the data split, pipeline, serving flow and infrastructure decisions.” Make that statement only after you have actually reviewed and run it yourself.
 
@@ -205,7 +205,7 @@ The separate task-rendering test checks that a describe-task response is cleaned
 
 “The model is served by FastAPI with input validation, liveness and readiness checks, model version metadata and request logs. The browser demo calls that API and lets you compare a hypothetical contract change, which I label as a model response rather than a causal claim.
 
-“I packaged the service with Docker and wrote GitHub Actions checks. I also prepared Terraform for ECS Fargate, ECR, a load balancer and CloudWatch alarms, plus an OIDC-based deployment workflow. The current completed work is locally verified; the cloud deployment is the next validation stage.”
+“I packaged the service with Docker and wrote GitHub Actions checks. I also prepared Terraform for ECS Fargate, ECR, a load balancer and CloudWatch alarms, plus an OIDC-based deployment workflow. The Python tests, Terraform validation, Docker build and container API checks passed in GitHub Actions. AWS deployment remains a separate, untested stage.”
 
 ## 15. Your learning order
 
