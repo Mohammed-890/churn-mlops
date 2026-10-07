@@ -1,0 +1,5 @@
+region            = "eu-west-2"
+name              = "churnops"
+image_uri         = "123456789012.dkr.ecr.eu-west-2.amazonaws.com/churnops@sha256:REPLACE"
+github_repository = "YOUR_USERNAME/churn-mlops"
+alarm_email       = ""

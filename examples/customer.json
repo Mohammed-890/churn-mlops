@@ -1,0 +1,10 @@
+{
+  "tenure": 4,
+  "MonthlyCharges": 85.5,
+  "TotalCharges": 342,
+  "Contract": "Month-to-month",
+  "InternetService": "Fiber optic",
+  "PaymentMethod": "Electronic check",
+  "PaperlessBilling": "Yes",
+  "TechSupport": "No"
+}

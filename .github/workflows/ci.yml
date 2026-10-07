@@ -1,0 +1,33 @@
+name: Test and build
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - run: python scripts/verify_data.py
+      - run: python -m src.train
+      - run: python -m pytest -q
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.9.8'
+      - run: terraform -chdir=infra fmt -check && terraform -chdir=infra init -backend=false && terraform -chdir=infra validate
+      - run: docker build -t churnops:ci .
+      - run: |
+          docker run -d --name churnops -p 8000:8000 churnops:ci
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:8000/ready; then break; fi
+            sleep 2
+          done
+          curl -fsS http://localhost:8000/ready
+          curl -fsS -H 'Content-Type: application/json' -d @examples/customer.json http://localhost:8000/predict
