@@ -7,3 +7,17 @@ tests
 docs
 infra
 *.zip
+venv
+env
+.env
+.env.*
+.aws
+**/.terraform
+**/*.tfstate*
+**/*.tfplan
+**/*.tfvars
+**/*.tfvars.json
+**/*credentials*.json
+**/*.pem
+**/*.key
+**/.DS_Store

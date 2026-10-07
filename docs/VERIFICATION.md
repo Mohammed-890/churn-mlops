@@ -28,3 +28,12 @@ The tested FastAPI/Starlette TestClient emits a deprecation warning about its ht
 ## Next validation sequence
 
 Run on your Mac; then run GitHub CI (including Terraform validation and Docker tests). Review AWS account/region/costs, deploy the bootstrap image and infrastructure, test public routing and logs, and only then exercise OIDC delivery and rollback. Update this report with actual observations.
+
+## Setup continuation — 2026-10-07
+
+- Rechecked the dataset checksum and reproduced all reported holdout metrics in a separate Python 3.12.14 environment using the pinned development requirements.
+- All 12 tests passed again (one previously documented Starlette/httpx deprecation warning).
+- Retraining wrote to a separate temporary directory; the committed model and the user's existing Python 3.14 environment were preserved.
+- Expanded Git and Docker exclusions for local environments, caches, environment files, common credential/key files, Terraform state/plans/variable values and macOS metadata.
+- Inspected all 38 tracked files for common AWS/GitHub token and private-key patterns; no matches were found. This is a targeted check, not a guarantee that every possible secret format is detectable.
+- GitHub upload and CI results remain pending authentication.

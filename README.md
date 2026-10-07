@@ -2,11 +2,11 @@
 
 A working customer churn demo, a tested Python API, reproducible training, Docker packaging, GitHub Actions workflows and Terraform infrastructure. Inspired by the public ECS project direction at CoderCo; independently implemented, not a copy of its paid course.
 
-**Start here:** this is a completed local portfolio implementation. AWS resources have not been created, and the GitHub workflows have not run on a GitHub repository yet. The detailed verification report distinguishes tested components from prepared deployment code.
+**Start here:** this is a locally tested portfolio implementation. AWS resources have not been created, and the GitHub workflows have not run on a GitHub repository yet. The detailed verification report distinguishes tested components from prepared deployment code.
 
 ## Run it on your Mac
 
-1. Extract the ZIP. It contains the `churn-mlops` folder.
+1. Download and extract the repository ZIP, or clone it with `git clone https://github.com/Mohammed-890/churn-mlops.git`.
 2. Open Terminal, type `cd ` (including the space), drag that folder into Terminal, and press Enter.
 3. Run `bash start.sh`. Requires Python 3.12, the version used for testing. The first run needs internet access to install packages.
 4. Open **http://127.0.0.1:8000** after the terminal says the application has started. Leave Terminal running.
